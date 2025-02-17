@@ -19,5 +19,4 @@ public class DataProviders {
                 {"smithtom", "NoSuperSecretPassword!"}
         };
     }
-
 }
