@@ -6,6 +6,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import theInternetHerokuapp.core.BasePage;
 
+import java.util.List;
+
 public class HomePage extends BasePage {
     public HomePage(WebDriver driver, WebDriverWait wait) {
         super(driver, wait);
@@ -26,4 +28,13 @@ public class HomePage extends BasePage {
         click(nested_frames);
         return new FramesPage(driver, wait);
     }
+
+    @FindBy(css = "a[href='/windows']")
+    WebElement multipleWidowsLink;
+
+    public MultipleWindowsPage multipleWindows() {
+        clickWithJS(multipleWidowsLink, 0, 500);
+        return new MultipleWindowsPage(driver, wait);
+    }
+
 }

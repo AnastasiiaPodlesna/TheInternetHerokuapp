@@ -7,7 +7,7 @@ import theInternetHerokuapp.pages.FramesPage;
 import theInternetHerokuapp.pages.HomePage;
 import theInternetHerokuapp.utils.DataProviders;
 
-public class IframesTests extends TestBase {
+public class FramesTests extends TestBase {
 
     @BeforeMethod
     public void precondition() {
@@ -15,13 +15,13 @@ public class IframesTests extends TestBase {
     }
 
     @Test
-    public void iframePositiveTest() {
+    public void framePositiveTest() {
         new FramesPage(app.driver, app.wait)
                 .getListOfFrames();
     }
 
     @Test
-    public void switchToIframeByIndexPositiveTest() {
+    public void switchToFramePositiveTest() {
         new FramesPage(app.driver, app.wait)
                 .switchToFrameByFrameName("frame_top","frame-right")
                 .verifyIFrameText("RIGHT");

@@ -2,14 +2,18 @@ package theInternetHerokuapp.core;
 
 import com.google.common.io.Files;
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import theInternetHerokuapp.pages.HomePage;
 
 import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class BasePage {
     public WebDriver driver;
@@ -78,4 +82,11 @@ public class BasePage {
         }
     }
 
+    public List<String> getHeadingPage(List<WebElement> headings){
+        List<String> headingTexts = headings
+                .stream()
+                .map(WebElement::getText)
+                .collect(Collectors.toList());
+        return  headingTexts;
+    }
 }
