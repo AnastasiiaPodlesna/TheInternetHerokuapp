@@ -1,0 +1,2 @@
+23:51:32.467 [main] INFO  core.TestBase -- Test is started: [multipleWindowsPositiveTest]
+23:51:37.102 [main] INFO  t.pages.MultipleWindowsPage -- Current Page Title: New Window

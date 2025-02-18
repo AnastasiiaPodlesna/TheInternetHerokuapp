@@ -15,8 +15,10 @@ public class MultipleWindowsTests extends TestBase {
     @Test
     public void multipleWindowsPositiveTest(){
         new MultipleWindowsPage(app.driver, app.wait)
-                .switchToOtherTab()
-               // .verifySwitching()
+                .clickByClickHereAndSwitchNewTab()
+                .verifySwitching()
+                .switchToStartPage()
+
         ;
 
     }
