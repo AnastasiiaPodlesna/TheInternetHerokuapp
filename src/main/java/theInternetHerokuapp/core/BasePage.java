@@ -1,27 +1,38 @@
 package theInternetHerokuapp.core;
 
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import com.google.common.io.Files;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+
+import java.io.File;
+import java.io.IOException;
+import java.time.Duration;
 
 public class BasePage {
     public WebDriver driver;
     public WebDriverWait wait;
     public JavascriptExecutor js;
 
-    public BasePage(WebDriver driver, WebDriverWait wait, JavascriptExecutor js) {
-        this.driver = driver;
-        this.wait = wait;
-        this.js = js;
-    }
-
     public BasePage(WebDriver driver, WebDriverWait wait) {
         this.driver = driver;
         this.wait = wait;
         this.js = (JavascriptExecutor) driver;
         PageFactory.initElements(driver,this);
+    }
+
+    public String takeScreenshot() {
+        File tmp = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        File screenshot = new File("src/test_screenshots/screen-" + System.currentTimeMillis() + ".png");
+        try {
+            Files.copy(tmp, screenshot);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("Screenshot saved to: [" + screenshot.getAbsolutePath() + "]");
+        return screenshot.getAbsolutePath();
     }
 
     public void click(WebElement element) {
@@ -54,4 +65,17 @@ public class BasePage {
         js.executeScript("document.getElementById('adplus-anchor').style.display='none';");
         js.executeScript("document.querySelector('footer').style.display='none';");
     }
+
+    public void shouldHaveText(WebElement element, String exp_text, int timeout) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(timeout));
+        String actualText = element.getText();
+
+        try {
+            boolean isTextPresent = wait.until(ExpectedConditions.textToBePresentInElement(element, exp_text));
+                Assert.assertTrue(isTextPresent, "Expected text: [" + exp_text + "], actual text in element: [" + actualText + "] in element: [" + element + "]");
+        } catch (TimeoutException e) {
+            throw new AssertionError("Text not found in element: [" + element + "], expected text: [" + exp_text + "] was text:[" + actualText + "]", e);
+        }
+    }
+
 }

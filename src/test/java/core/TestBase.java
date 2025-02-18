@@ -16,7 +16,7 @@ public class TestBase {
 
     @BeforeMethod
     public void setUp(Method method) {
-      //  logger.info("Test is started: [" + method.getName() + "]");
+        logger.info("Test is started: [" + method.getName() + "]");
         app.init();
     }
 

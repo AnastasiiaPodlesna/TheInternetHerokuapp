@@ -18,4 +18,12 @@ public class HomePage extends BasePage {
         clickWithJS(formAuthenticationLink, 0, 500);
         return new LoginPage(driver, wait);
     }
+
+    @FindBy(xpath = "//a[@href='/nested_frames']")
+    WebElement nested_frames;
+
+    public FramesPage nestedFrames() {
+        click(nested_frames);
+        return new FramesPage(driver, wait);
+    }
 }

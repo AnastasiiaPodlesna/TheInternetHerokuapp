@@ -7,7 +7,7 @@ import theInternetHerokuapp.pages.HomePage;
 import theInternetHerokuapp.pages.LoginPage;
 import theInternetHerokuapp.utils.DataProviders;
 
-public class LoginTest extends TestBase {
+public class LoginTests extends TestBase {
 
     @BeforeMethod
     public void precondition() {
