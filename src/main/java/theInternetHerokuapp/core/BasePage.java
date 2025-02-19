@@ -89,4 +89,8 @@ public class BasePage {
                 .collect(Collectors.toList());
         return  headingTexts;
     }
+
+    protected int numberOfElements() {
+        return driver.findElements(By.cssSelector("button[onclick='deleteElement()']")).size();
+    }
 }

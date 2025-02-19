@@ -6,10 +6,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import theInternetHerokuapp.core.BasePage;
 
-import java.util.List;
-
 public class HomePage extends BasePage {
-    public HomePage(WebDriver driver, WebDriverWait wait) {
+    public HomePage(WebDriver driver,
+            WebDriverWait wait) {
         super(driver, wait);
     }
 
@@ -37,4 +36,43 @@ public class HomePage extends BasePage {
         return new MultipleWindowsPage(driver, wait);
     }
 
+    @FindBy(css = "a[href='/dropdown']")
+    WebElement dropDownLink;
+
+    public DropdownPage dropDown() {
+        click(dropDownLink);
+        return new DropdownPage(driver, wait);
+    }
+
+    @FindBy(css = "a[href='/context_menu']")
+    WebElement context_menu;
+
+    public ContextMenuPage contextMenu() {
+        click(context_menu);
+        return new ContextMenuPage(driver, wait);
+    }
+
+    @FindBy(css = "a[href='/checkboxes']")
+    WebElement checkboxes;
+
+    public CheckboxesPage checkboxes() {
+        click(checkboxes);
+        return new CheckboxesPage(driver, wait);
+    }
+
+    @FindBy (css = "a[href='/add_remove_elements/']")
+    WebElement add_remove_elements;
+
+    public AddRemoveElementsPage addRemoveElements() {
+        click(add_remove_elements);
+        return new AddRemoveElementsPage(driver, wait);
+    }
+
+    @FindBy (css = "a[href='/hovers']")
+    WebElement hovers;
+
+    public HoversPage clickHoversLink() {
+        clickWithJS(hovers, 0, 500);
+        return new HoversPage(driver, wait);
+    }
 }
